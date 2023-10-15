@@ -1,0 +1,7 @@
+.image {
+  width: 300px;
+}
+
+.image > img {
+  width: 100%;
+}
