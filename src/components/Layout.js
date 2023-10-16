@@ -1,24 +1,15 @@
 import React from "react";
-import { Link } from "gatsby-link";
 
 // import global style
 import "../styles/global.css";
 
-import { navbar, box } from "../styles/layout.module.css";
+import { box } from "../styles/layout.module.css";
+import Navbar from "./navbar";
 
 const Layout = ({ children }) => {
   return (
     <main>
-      <div className={navbar}>
-        <ul>
-          <li>
-            <Link to={"/"}>Home</Link>
-          </li>
-          <li>
-            <Link to={"/about"}>About</Link>
-          </li>
-        </ul>
-      </div>
+      <Navbar />
       <div className={box}>{children}</div>
       <div>Footer</div>
     </main>
