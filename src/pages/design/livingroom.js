@@ -1,31 +1,9 @@
 import React from "react";
 import Layout from "../../components/Layout";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql } from "gatsby";
 import Image from "../../components/Image";
 
-const Livingroom = () => {
-  const data = useStaticQuery(graphql`
-    query Images {
-      allFile(
-        filter: {
-          extension: { regex: "/(jpg)|(png)|(jpeg)/" }
-          relativeDirectory: { eq: "livingroom" }
-        }
-      ) {
-        edges {
-          node {
-            id
-            relativeDirectory
-            base
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
-      }
-    }
-  `);
-
+const Livingroom = ({ data }) => {
   const images = data.allFile.edges;
 
   return (
@@ -37,5 +15,27 @@ const Livingroom = () => {
     </Layout>
   );
 };
+
+export const query = graphql`
+  query Images {
+    allFile(
+      filter: {
+        extension: { regex: "/(jpg)|(png)|(jpeg)/" }
+        relativeDirectory: { eq: "livingroom" }
+      }
+    ) {
+      edges {
+        node {
+          id
+          relativeDirectory
+          base
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default Livingroom;
