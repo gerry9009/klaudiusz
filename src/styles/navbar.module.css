@@ -1,0 +1,11 @@
+.dropdown {
+  border: 2px solid gray;
+}
+
+.dropdown:has(.current) {
+  border: 2px solid red;
+}
+
+.current {
+  background-color: rebeccapurple;
+}

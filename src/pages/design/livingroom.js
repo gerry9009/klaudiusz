@@ -3,11 +3,11 @@ import Layout from "../../components/Layout";
 import { graphql } from "gatsby";
 import Image from "../../components/Image";
 
-const Livingroom = ({ data }) => {
+const Livingroom = ({ data, location }) => {
   const images = data.allFile.edges;
 
   return (
-    <Layout>
+    <Layout href={location.pathname}>
       {images.map((image) => {
         // pass to the Image component image object from query
         return <Image picture={image.node} key={image.node.id} />;

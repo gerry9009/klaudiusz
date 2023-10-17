@@ -1,0 +1,34 @@
+{
+  "pages": {
+    "dropdown": [
+      {
+        "path": "/design/bathroom/",
+        "name": "Fürdőszoba"
+      },
+      {
+        "path": "/design/bedroom/",
+        "name": "Hálószoba"
+      },
+      {
+        "path": "/design/kitchen/",
+        "name": "Konyha"
+      },
+      {
+        "path": "/design/livingroom/",
+        "name": "Nappali"
+      }
+    ],
+    "home": {
+      "path": "/",
+      "name": "Főoldal"
+    },
+    "about": {
+      "path": "/about/",
+      "name": "Rólam"
+    },
+    "contact": {
+      "path": "/contact/",
+      "name": "Kapcsolat"
+    }
+  }
+}
