@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { Link } from "gatsby-link";
 
-import { dropdown, current } from "../styles/navbar.module.css";
+import {
+  navbar,
+  dropdown,
+  current,
+  show_dropdown,
+  hide_dropdown,
+} from "../styles/navbar.module.css";
 import { graphql } from "gatsby";
 
 const Navbar = ({ data, href }) => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
-  console.log(data);
 
   //TODO: KI KELL MÉG TALÁLNI HOGYAN TUDOM A JSON-T BEIMPORTÁLNI
   const pages = {
@@ -43,33 +48,53 @@ const Navbar = ({ data, href }) => {
     },
   };
 
+  const wrapperRef = useRef(null);
+
+  //https://stackoverflow.com/questions/32553158/detect-click-outside-react-component
+  useEffect(() => {
+    const handleClickOutsideDropdown = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setToggleDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutsideDropdown);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideDropdown);
+    };
+  }, [toggleDropdown]);
+
   const handleToggleDropdown = () => {
-    setToggleDropdown((prev) => !prev);
+    setToggleDropdown(!toggleDropdown);
   };
+
   const Dropdown = () => {
     return (
       <div className={dropdown}>
-        <button onClick={handleToggleDropdown}>Referenciák</button>
-        {toggleDropdown && (
-          <ul>
-            {pages.dropdown.map((page) => {
-              return (
-                <li
-                  className={page.path === href ? current : undefined}
-                  key={page.path}
-                >
-                  <Link to={page.path}>{page.name}</Link>
-                </li>
-              );
-            })}
-          </ul>
-        )}
+        <button onClick={handleToggleDropdown}>
+          Referenciák {toggleDropdown ? "<" : ">"}
+        </button>
+        <ul
+          className={toggleDropdown ? show_dropdown : hide_dropdown}
+          ref={wrapperRef}
+        >
+          {pages.dropdown.map((page) => {
+            return (
+              <li
+                className={page.path === href ? current : undefined}
+                key={page.path}
+              >
+                <Link to={page.path}>{page.name}</Link>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     );
   };
 
   return (
-    <nav>
+    <nav className={navbar}>
       <ul>
         <li className={pages.home.path === href ? current : undefined}>
           <Link to={pages.home.path}>{pages.home.name}</Link>

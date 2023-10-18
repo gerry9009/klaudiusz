@@ -1,11 +1,11 @@
 .layout {
-  background: red;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.box {
+.container {
+  min-height: 70vh;
   background-color: green;
-}
-
-.navbar {
-  background-color: gold;
 }

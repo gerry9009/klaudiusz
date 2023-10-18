@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../components/Layout";
 import { graphql } from "gatsby";
-import Image from "../../components/Image";
+import Image from "../../components/Image.component";
 
 const Outside = ({ data, location }) => {
   const images = data.allFile.edges;
