@@ -9,7 +9,7 @@ const Header = ({ href }) => {
   return (
     <header className={header}>
       <Link to="/" className={logo}>
-        Klaudiusz
+        <p>Klaudiusz</p>
       </Link>
       <Navbar href={href} />
     </header>

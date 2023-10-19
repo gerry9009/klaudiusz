@@ -1,100 +1,135 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { Link } from "gatsby-link";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+
+import useClickOutside from "../hooks/useClickOutside";
+import useWindowWith from "../hooks/useWindowWith";
+
 import {
-  navbar,
+  tab_bar,
   dropdown,
   current,
   show_dropdown,
   hide_dropdown,
+  hamburger,
+  hamburger_button,
+  active,
 } from "../styles/navbar.module.css";
-import { graphql } from "gatsby";
 
-const Navbar = ({ data, href }) => {
+const pages = {
+  dropdown: [
+    {
+      path: "/design/bathroom/",
+      name: "Fürdőszoba",
+    },
+    {
+      path: "/design/bedroom/",
+      name: "Hálószoba",
+    },
+    {
+      path: "/design/kitchen/",
+      name: "Konyha",
+    },
+    {
+      path: "/design/livingroom/",
+      name: "Nappali",
+    },
+  ],
+  home: {
+    path: "/",
+    name: "Főoldal",
+  },
+  about: {
+    path: "/about/",
+    name: "Rólam",
+  },
+  contact: {
+    path: "/contact/",
+    name: "Kapcsolat",
+  },
+};
+
+const Navbar = ({ href }) => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
-
-  //TODO: KI KELL MÉG TALÁLNI HOGYAN TUDOM A JSON-T BEIMPORTÁLNI
-  const pages = {
-    dropdown: [
-      {
-        path: "/design/bathroom/",
-        name: "Fürdőszoba",
-      },
-      {
-        path: "/design/bedroom/",
-        name: "Hálószoba",
-      },
-      {
-        path: "/design/kitchen/",
-        name: "Konyha",
-      },
-      {
-        path: "/design/livingroom/",
-        name: "Nappali",
-      },
-    ],
-    home: {
-      path: "/",
-      name: "Főoldal",
-    },
-    about: {
-      path: "/about/",
-      name: "Rólam",
-    },
-    contact: {
-      path: "/contact/",
-      name: "Kapcsolat",
-    },
-  };
+  const [toggleHamburger, setToggleHamburger] = useState(false);
 
   const wrapperRef = useRef(null);
 
-  //https://stackoverflow.com/questions/32553158/detect-click-outside-react-component
-  useEffect(() => {
-    const handleClickOutsideDropdown = (e) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
-        setToggleDropdown(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutsideDropdown);
+  const windowWith = useWindowWith(() => setToggleDropdown(false));
+  useClickOutside(wrapperRef, toggleDropdown, () => setToggleDropdown(false));
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutsideDropdown);
-    };
-  }, [toggleDropdown]);
+  if (windowWith > 768 && toggleHamburger) {
+    setToggleHamburger(false);
+  }
 
   const handleToggleDropdown = () => {
     setToggleDropdown(!toggleDropdown);
   };
 
+  const handleToggleHamburger = () => {
+    setToggleHamburger(!toggleHamburger);
+  };
+
+  const DropdownItem = () => {
+    const dropdownClass = toggleDropdown ? show_dropdown : hide_dropdown;
+
+    const Pages = pages.dropdown.map((page) => {
+      return (
+        <li
+          className={page.path === href ? current : undefined}
+          key={page.path}
+        >
+          <Link to={page.path}>{page.name}</Link>
+        </li>
+      );
+    });
+
+    if (windowWith > 768) {
+      return (
+        <ul className={dropdownClass} ref={wrapperRef}>
+          {Pages}
+        </ul>
+      );
+    } else {
+      return <ul>{Pages}</ul>;
+    }
+  };
+
+  const DropdownButton = () => {
+    if (windowWith > 768) {
+      return (
+        <button onClick={handleToggleDropdown}>
+          Referenciák{" "}
+          {toggleDropdown ? (
+            <FontAwesomeIcon icon={faAngleDown} rotation={180} />
+          ) : (
+            <FontAwesomeIcon icon={faAngleDown} />
+          )}
+        </button>
+      );
+    } else {
+      return (
+        <button>
+          Referenciák <FontAwesomeIcon icon={faAngleDown} />
+        </button>
+      );
+    }
+  };
+
   const Dropdown = () => {
     return (
       <div className={dropdown}>
-        <button onClick={handleToggleDropdown}>
-          Referenciák {toggleDropdown ? "<" : ">"}
-        </button>
-        <ul
-          className={toggleDropdown ? show_dropdown : hide_dropdown}
-          ref={wrapperRef}
-        >
-          {pages.dropdown.map((page) => {
-            return (
-              <li
-                className={page.path === href ? current : undefined}
-                key={page.path}
-              >
-                <Link to={page.path}>{page.name}</Link>
-              </li>
-            );
-          })}
-        </ul>
+        <DropdownButton />
+        <DropdownItem />
       </div>
     );
   };
 
-  return (
-    <nav className={navbar}>
+  const NavigationBar = () => {
+    return (
       <ul>
         <li className={pages.home.path === href ? current : undefined}>
           <Link to={pages.home.path}>{pages.home.name}</Link>
@@ -109,58 +144,35 @@ const Navbar = ({ data, href }) => {
           <Link to={pages.contact.path}>{pages.contact.name}</Link>
         </li>
       </ul>
+    );
+  };
+
+  const HamburgerButton = () => {
+    const hamburgerClass = `${hamburger_button} ${
+      toggleHamburger ? active : undefined
+    }`;
+
+    return (
+      <button className={hamburgerClass} onClick={handleToggleHamburger}>
+        <span></span>
+      </button>
+    );
+  };
+
+  const HamburegerMenu = () => {
+    return (
+      <>
+        <HamburgerButton />
+        {toggleHamburger && <NavigationBar />}
+      </>
+    );
+  };
+
+  return (
+    <nav className={windowWith < 768 ? hamburger : tab_bar}>
+      {windowWith < 768 ? <HamburegerMenu /> : <NavigationBar />}
     </nav>
   );
 };
 
-export const query = graphql`
-  query MyQuery {
-    allFile(filter: { extension: { regex: "/(json)/" } }) {
-      edges {
-        node {
-          childDataJson {
-            pages {
-              about {
-                name
-                path
-              }
-              contact {
-                name
-                path
-              }
-              dropdown {
-                name
-                path
-              }
-              home {
-                name
-                path
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 export default Navbar;
-
-// pages {
-//     about {
-//       name
-//       path
-//     }
-//     contact {
-//       name
-//       path
-//     }
-//     dropdown {
-//       name
-//       path
-//     }
-//     home {
-//       name
-//       path
-//     }
-//   }
