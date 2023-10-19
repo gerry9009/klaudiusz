@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 
 const About = ({ location }) => {
   return (
-    <Layout href={location.pathname}>
+    <Layout location={location}>
       <h2>About</h2>
     </Layout>
   );

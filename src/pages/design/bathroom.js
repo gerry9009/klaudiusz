@@ -7,10 +7,9 @@ import Image from "../../components/Image.component";
 
 const Bathroom = ({ data, location }) => {
   const images = data.allFile.edges;
-  console.log(data);
 
   return (
-    <Layout href={location.pathname}>
+    <Layout location={location}>
       {images.map((image) => {
         // pass to the Image component image object from query
         return <Image picture={image.node} key={image.node.id} />;

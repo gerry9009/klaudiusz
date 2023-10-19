@@ -6,10 +6,10 @@ import "../styles/global.css";
 import { layout, container } from "../styles/layout.module.css";
 import Header from "./Header";
 
-const Layout = ({ children, href }) => {
+const Layout = ({ children, location }) => {
   return (
     <main className={layout}>
-      <Header href={href} />
+      <Header href={location.pathname} />
       <div className={container}>{children}</div>
       <div>Footer</div>
     </main>

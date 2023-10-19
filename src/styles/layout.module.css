@@ -7,8 +7,25 @@
 
 .container {
   min-height: 70vh;
-  background-color: green;
+  background-color: gray;
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: showUp 350ms;
+}
+
+@keyframes showUp {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(80px);
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
 }

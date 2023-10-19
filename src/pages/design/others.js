@@ -7,7 +7,7 @@ const Others = ({ data, location }) => {
   const images = data.allFile.edges;
 
   return (
-    <Layout href={location.pathname}>
+    <Layout location={location}>
       {images.map((image) => {
         // pass to the Image component image object from query
         return <Image picture={image.node} key={image.node.id} />;

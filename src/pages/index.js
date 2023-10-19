@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 
 export default function Home({ location }) {
   return (
-    <Layout href={location.pathname}>
+    <Layout location={location}>
       <h2>Hello world</h2>
     </Layout>
   );
