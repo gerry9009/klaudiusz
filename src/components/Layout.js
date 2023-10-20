@@ -8,15 +8,13 @@ import {
   overflow,
   container,
   showUp,
-  showDown,
   showLeft,
+  showDown,
   showRight,
 } from "../styles/layout.module.css";
 import Header from "./Header";
 
 const Layout = ({ children, location }) => {
-  console.log(location.pathname);
-
   const animationName =
     location.pathname === "/"
       ? showLeft

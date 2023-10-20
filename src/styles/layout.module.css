@@ -72,11 +72,12 @@
   animation: showDown 350ms;
 }
 
-.showLeft {
-  animation: showLeft 350ms;
-}
 .showRight {
   animation: showRight 350ms;
+}
+
+.showLeft {
+  animation: showLeft 350ms;
 }
 
 @keyframes showUp {
@@ -111,11 +112,11 @@
   }
 }
 
-@keyframes showLeft {
+@keyframes showRight {
   0% {
     opacity: 0;
     visibility: hidden;
-    transform: translateX(-100px);
+    transform: translateX(100px);
   }
   25% {
     opacity: 0;
@@ -127,11 +128,11 @@
   }
 }
 
-@keyframes showRight {
+@keyframes showLeft {
   0% {
     opacity: 0;
     visibility: hidden;
-    transform: translateX(100px);
+    transform: translateX(-100px);
   }
   25% {
     opacity: 0;
