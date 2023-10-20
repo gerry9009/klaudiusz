@@ -115,6 +115,10 @@ a:hover {
   text-align: left;
 }
 
+.hamburger > ul {
+  border-bottom: 2px solid var(--primary-color);
+}
+
 .hamburger .dropdown button {
   cursor: default;
 }
