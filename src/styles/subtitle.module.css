@@ -1,0 +1,19 @@
+.subtitle {
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  text-align: center;
+}
+@media (min-width: 576px) {
+  .subtitle::after,
+  .subtitle::before {
+    content: "";
+    width: 50px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: var(--secondary-color);
+    margin: 2rem;
+  }
+}

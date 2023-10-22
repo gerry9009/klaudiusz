@@ -19,38 +19,7 @@ import {
   active,
 } from "../styles/navbar.module.css";
 
-const pages = {
-  dropdown: [
-    {
-      path: "/design/bathroom/",
-      name: "Fürdőszoba",
-    },
-    {
-      path: "/design/bedroom/",
-      name: "Hálószoba",
-    },
-    {
-      path: "/design/kitchen/",
-      name: "Konyha",
-    },
-    {
-      path: "/design/livingroom/",
-      name: "Nappali",
-    },
-  ],
-  home: {
-    path: "/",
-    name: "Főoldal",
-  },
-  about: {
-    path: "/about/",
-    name: "Rólam",
-  },
-  contact: {
-    path: "/contact/",
-    name: "Kapcsolat",
-  },
-};
+import pages from "../data/pages.js";
 
 const Navbar = ({ href }) => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
