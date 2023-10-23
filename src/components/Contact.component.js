@@ -28,11 +28,11 @@ const Contact = () => {
           <div className={contact_name}>
             <div className={contact_input}>
               <input type="text" name="csaladnev" id="csaladnev" required />
-              <label for="csaladnev">Családnév</label>
+              <label htmlFor="csaladnev">Családnév</label>
             </div>
             <div className={contact_input}>
               <input type="text" name="keresztnev" id="keresztnev" required />
-              <label for="keresztnev">Keresztnév</label>
+              <label htmlFor="keresztnev">Keresztnév</label>
             </div>
           </div>
           <div className={contact_input}>
@@ -43,11 +43,11 @@ const Contact = () => {
               required
               placeholder=""
             />
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
           </div>
           <div className={contact_input}>
             <input type="tel" name="telefon" id="telefon" required />
-            <label for="telefon">Telefon</label>
+            <label htmlFor="telefon">Telefon</label>
           </div>
           <div className={contact_input}>
             <textarea

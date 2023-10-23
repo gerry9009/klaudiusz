@@ -1,12 +1,12 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Link } from "gatsby-link";
 import Layout from "../../components/Layout";
 import ImageContainer from "../../components/ImageContainer";
 
 import { pages } from "../../styles/pages.module.css";
 import Contact from "../../components/contact.component";
 import Subtitle from "../../components/Subtitle.component";
+import Navigation from "../../components/Navigation.component";
 
 const Kitchen = ({ data, location }) => {
   const images = data.allFile.edges;
@@ -15,7 +15,9 @@ const Kitchen = ({ data, location }) => {
     <Layout location={location}>
       <div className={pages}>
         <h1>Konyha</h1>
+        <Navigation location={location} />
         <ImageContainer images={images} />
+        <Navigation location={location} />
         <Subtitle title="Kapcsolat" />
         <Contact />
       </div>

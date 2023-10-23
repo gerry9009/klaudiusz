@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "./Image.component";
+import { v4 as uuidv4 } from "uuid";
 
 import {
   image_container,
@@ -13,7 +14,7 @@ const ImageContainer = ({ images }) => {
   const getImages = (images) => {
     const Images = images.map((image) => {
       // pass to the Image component image object from query
-      return <Image picture={image.node} key={image.node.id} />;
+      return <Image picture={image.node} key={uuidv4()} />;
     });
 
     return Images;

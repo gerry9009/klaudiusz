@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 
 import { Link } from "gatsby-link";
 
+import { v4 as uuidv4 } from "uuid";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -47,10 +49,7 @@ const Navbar = ({ href }) => {
 
     const Pages = pages.dropdown.map((page) => {
       return (
-        <li
-          className={page.path === href ? current : undefined}
-          key={page.path}
-        >
+        <li className={page.path === href ? current : undefined} key={uuidv4()}>
           <Link to={page.path}>{page.name}</Link>
         </li>
       );

@@ -6,6 +6,7 @@ import ImageContainer from "../../components/ImageContainer";
 import { pages } from "../../styles/pages.module.css";
 import Contact from "../../components/contact.component";
 import Subtitle from "../../components/Subtitle.component";
+import Navigation from "../../components/Navigation.component";
 
 const Bedroom = ({ data, location }) => {
   const images = data.allFile.edges;
@@ -14,7 +15,9 @@ const Bedroom = ({ data, location }) => {
     <Layout location={location}>
       <div className={pages}>
         <h1>Hálószoba</h1>
+        <Navigation location={location} />
         <ImageContainer images={images} />
+        <Navigation location={location} />
         <Subtitle title="Kapcsolat" />
         <Contact />
       </div>

@@ -20,7 +20,7 @@ const useClickOutside = (wrapperRef, state, callback) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutsideDropdown);
     };
-  }, [state]);
+  }, [wrapperRef, state, callback]);
 };
 
 export default useClickOutside;

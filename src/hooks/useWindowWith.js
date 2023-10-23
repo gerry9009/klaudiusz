@@ -17,7 +17,7 @@ const useWindowWith = (callback) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [callback, handleResize]);
 
   return windowWith;
 };
