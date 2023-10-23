@@ -14,11 +14,10 @@ import {
 
 import pages from "../data/pages";
 import Subtitle from "../components/Subtitle.component";
+import Contact from "../components/contact.component";
 
 export default function Home({ location, data }) {
   const edges = data.allFile.edges;
-  console.log(data);
-
   // GET IMAGE FROM FOLDERS TO EACH CATEGORY
 
   const extendPages = pages.dropdown.map((page) => {
@@ -54,6 +53,7 @@ export default function Home({ location, data }) {
 
             <div id="contact">
               <Subtitle title="Kapcsolat" />
+              <Contact />
             </div>
           </div>
         </div>

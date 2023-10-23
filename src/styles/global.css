@@ -9,9 +9,12 @@
   --primary-color: #513d2a;
   --secondary-color: #a98b6f;
   --tertiary-color: #9a7e64;
+  --fifth-color: #cec9c4;
   --white-color: #fbfbfb;
   --black-color: #222222;
   --gray-color: #cccccc;
+  --clear-white-color: #ffffff;
+  --clear-black-color: #000000;
 }
 
 * {
@@ -48,13 +51,15 @@ button {
 }
 
 button,
-a {
+a,
+input[type="submit"] {
   padding: 1rem;
   display: block;
   transition: all 0.5s ease;
   font-size: 1rem;
   line-height: 1.5rem;
   letter-spacing: 0.125rem;
+  cursor: pointer;
 }
 
 /* Base font size and line height */
