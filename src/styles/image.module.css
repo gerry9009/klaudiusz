@@ -1,7 +1,18 @@
 .image {
-  width: 300px;
 }
 
 .image > img {
   width: 100%;
 }
+
+/* @media (min-width: 768px) {
+  .image {
+    max-width: 45%;
+  }
+}
+
+@media (min-width: 992px) {
+  .image {
+    max-width: calc(100% / 3 - 1rem);
+  }
+} */

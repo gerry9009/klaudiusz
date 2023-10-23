@@ -1,8 +1,11 @@
 import React from "react";
-import Layout from "../../components/Layout";
 import { graphql } from "gatsby";
-import Image from "../../components/Image.component";
+import Layout from "../../components/Layout";
+import ImageContainer from "../../components/ImageContainer";
+
 import { pages } from "../../styles/pages.module.css";
+import Contact from "../../components/contact.component";
+import Subtitle from "../../components/Subtitle.component";
 
 const Bedroom = ({ data, location }) => {
   const images = data.allFile.edges;
@@ -11,10 +14,9 @@ const Bedroom = ({ data, location }) => {
     <Layout location={location}>
       <div className={pages}>
         <h1>Hálószoba</h1>
-        {images.map((image) => {
-          // pass to the Image component image object from query
-          return <Image picture={image.node} key={image.node.id} />;
-        })}
+        <ImageContainer images={images} />
+        <Subtitle title="Kapcsolat" />
+        <Contact />
       </div>
     </Layout>
   );

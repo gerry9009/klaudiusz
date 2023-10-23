@@ -1,10 +1,11 @@
 import React from "react";
-
 import { graphql } from "gatsby";
-
 import Layout from "../../components/Layout";
-import Image from "../../components/Image.component";
+import ImageContainer from "../../components/ImageContainer";
+
 import { pages } from "../../styles/pages.module.css";
+import Contact from "../../components/contact.component";
+import Subtitle from "../../components/Subtitle.component";
 
 const Bathroom = ({ data, location }) => {
   const images = data.allFile.edges;
@@ -13,10 +14,9 @@ const Bathroom = ({ data, location }) => {
     <Layout location={location}>
       <div className={pages}>
         <h1>Fürdőszoba</h1>
-        {images.map((image) => {
-          // pass to the Image component image object from query
-          return <Image picture={image.node} key={image.node.id} />;
-        })}
+        <ImageContainer images={images} />
+        <Subtitle title="Kapcsolat" />
+        <Contact />
       </div>
     </Layout>
   );

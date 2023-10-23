@@ -1,0 +1,22 @@
+.image_container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .image_column {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .image_column {
+    width: 30%;
+  }
+}
