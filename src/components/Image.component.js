@@ -6,14 +6,19 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const Image = ({ picture }) => {
   const img = getImage(picture);
+  const src = picture.childImageSharp.gatsbyImageData.images.fallback.src;
 
   return (
     <div className={image}>
       <GatsbyImage
         image={img}
-        alt={picture.relativeDirectory}
+        src={src}
+        alt={picture.base}
         className={image_img}
       />
+      {/* <a href={src} download>
+        Download
+      </a> */}
     </div>
   );
 };

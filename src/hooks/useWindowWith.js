@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
 
 const useWindowWith = (callback) => {
-  const [windowWith, setWindowWith] = useState(window.innerWidth);
+  const [windowWith, setWindowWith] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setWindowWith(window.innerWidth);
+    }
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowWith(window.innerWidth);
+      if (typeof window !== "undefined") {
+        setWindowWith(window.innerWidth);
+      }
       if (callback) {
         callback();
       }
