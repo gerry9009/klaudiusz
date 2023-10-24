@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgatsby_starter_hello_world=self.webpackChunkgatsby_starter_hello_world||[]).push([[883],{429:function(e,t,l){l.r(t);var a=l(7294);t.default=()=>a.createElement("div",null,"404 Not Found Page")}}]);
+//# sourceMappingURL=component---src-pages-404-js-af568bd5e8f586f7f037.js.map
