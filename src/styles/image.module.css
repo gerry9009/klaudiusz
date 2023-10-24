@@ -1,5 +1,6 @@
 .image {
   overflow: hidden;
+  position: relative;
 }
 
 @media screen and (min-width: 768px) {
@@ -26,6 +27,56 @@
     left: 0;
     right: 0;
     background: var(--black-color);
-    opacity: 0.2;
+    opacity: 0.3;
+  }
+}
+
+.image_share_bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.image_share_bar > a {
+  border: 1px solid var(--fifth-color);
+  color: var(--fifth-color);
+}
+
+.image_share_bar > a:hover {
+  background: none;
+  color: var(--black-color);
+  border: 1px solid var(--black-color);
+}
+
+@media screen and (min-width: 768px) {
+  .image_share_bar {
+    position: absolute;
+    z-index: 10;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    transition: 525ms ease all;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 2px;
+    padding: 0;
+  }
+
+  .image_share_bar > a {
+    border: 1px solid var(--white-color);
+    background: var(--white-color);
+    color: var(--black-color);
+    padding: 0.5rem 1rem;
+  }
+
+  .image_share_bar > a:hover {
+    background: var(--primary-color);
+    color: var(--white-color);
+    border: 1px solid var(--primary-color);
+  }
+
+  .image:hover .image_share_bar {
+    opacity: 1;
+    visibility: visible;
   }
 }

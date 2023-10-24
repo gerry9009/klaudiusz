@@ -13,13 +13,3 @@
 .pages h2 {
   text-align: center;
 }
-
-.pages a {
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
-}
-
-.pages a:hover {
-  color: var(--white-color);
-  background: var(--primary-color);
-}

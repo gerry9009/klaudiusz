@@ -9,6 +9,11 @@
  */
 module.exports = {
   pathPrefix: "/klaudiusz",
+  siteMetadata: {
+    title: "Klaudiusz Bútorasztalos",
+    description: "Bútorasztalos portfólió oldal",
+    copyright: "2023 © Buglyó Gergő",
+  },
   plugins: [
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,

@@ -2,11 +2,15 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 2rem;
-  width: 100%;
+  gap: 4rem;
+  width: 90%;
 }
 
 @media (min-width: 768px) {
+  .image_container {
+    width: 100%;
+    gap: 2rem;
+  }
   .image_column {
     width: 45%;
     display: flex;
