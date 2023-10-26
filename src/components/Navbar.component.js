@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 import useClickOutside from "../hooks/useClickOutside";
-import useWindowWith from "../hooks/useWindowWith";
+import useWindowWidth from "../hooks/useWindowWidth";
 
 import {
   tab_bar,
@@ -29,10 +29,10 @@ const Navbar = ({ href }) => {
 
   const wrapperRef = useRef(null);
 
-  const windowWith = useWindowWith(() => setToggleDropdown(false));
+  const windowWidth = useWindowWidth(() => setToggleDropdown(false));
   useClickOutside(wrapperRef, toggleDropdown, () => setToggleDropdown(false));
 
-  if (windowWith > 768 && toggleHamburger) {
+  if (windowWidth > 768 && toggleHamburger) {
     setToggleHamburger(false);
   }
 
@@ -55,7 +55,7 @@ const Navbar = ({ href }) => {
       );
     });
 
-    if (windowWith > 768) {
+    if (windowWidth > 768) {
       return (
         <ul className={dropdownClass} ref={wrapperRef}>
           {Pages}
@@ -67,7 +67,7 @@ const Navbar = ({ href }) => {
   };
 
   const DropdownButton = () => {
-    if (windowWith > 768) {
+    if (windowWidth > 768) {
       return (
         <button onClick={handleToggleDropdown}>
           Referenciák{" "}
@@ -137,8 +137,8 @@ const Navbar = ({ href }) => {
   };
 
   return (
-    <nav className={windowWith < 768 ? hamburger : tab_bar}>
-      {windowWith < 768 ? <HamburegerMenu /> : <NavigationBar />}
+    <nav className={windowWidth <= 768 ? hamburger : tab_bar}>
+      {windowWidth <= 768 ? <HamburegerMenu /> : <NavigationBar />}
     </nav>
   );
 };

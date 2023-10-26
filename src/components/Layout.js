@@ -13,6 +13,7 @@ import {
   showRight,
 } from "../styles/layout.module.css";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const Layout = ({ children, location }) => {
   const animationName =
@@ -29,7 +30,7 @@ const Layout = ({ children, location }) => {
       <Header href={location.pathname} />
       <div className={overflow}></div>
       <div className={`${container} ${animationName}`}>{children}</div>
-      <div>Footer</div>
+      <Footer />
     </main>
   );
 };

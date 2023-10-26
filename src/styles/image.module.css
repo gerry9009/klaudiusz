@@ -34,7 +34,7 @@
 .image_share_bar {
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 2rem 0;
 }
 
 .image_share_bar > a {

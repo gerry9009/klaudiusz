@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "./Image.component";
 import { v4 as uuidv4 } from "uuid";
 
@@ -6,15 +6,46 @@ import {
   image_container,
   image_column,
 } from "../styles/imageContainer.module.css";
-import useWindowWith from "../hooks/useWindowWith";
+import useWindowWidth from "../hooks/useWindowWidth";
+import ImageViewer from "./ImageViewer.component";
+import useScrollDisable from "../hooks/useScrollDisable";
 
 const ImageContainer = ({ images }) => {
-  const windowWith = useWindowWith();
+  const [openImageViewer, setOpenImageViewer] = useState(false);
+  const [selectedID, setSelectedID] = useState(null);
+
+  const windowWidth = useWindowWidth();
+
+  useEffect(() => {
+    if (windowWidth < 768) {
+      setSelectedID(null);
+      setOpenImageViewer(false);
+    }
+  }, [windowWidth]);
+
+  useScrollDisable(openImageViewer);
+
+  const handleImageClick = (id) => {
+    console.log(id);
+    setOpenImageViewer(true);
+    setSelectedID(id);
+  };
+
+  const handleCloseImageViewer = () => {
+    setOpenImageViewer(false);
+    setSelectedID(null);
+  };
 
   const getImages = (images) => {
     const Images = images.map((image) => {
       // pass to the Image component image object from query
-      return <Image picture={image.node} key={uuidv4()} />;
+      return (
+        <Image
+          picture={image.node}
+          handleImageClick={handleImageClick}
+          key={uuidv4()}
+        />
+      );
     });
 
     return Images;
@@ -64,9 +95,9 @@ const ImageContainer = ({ images }) => {
   };
 
   const ChangeLayout = () => {
-    if (windowWith > 992) {
+    if (windowWidth > 992) {
       return <LargeWindow />;
-    } else if (windowWith > 768) {
+    } else if (windowWidth > 768) {
       return <MediumWindow />;
     } else {
       return <SmallWindow />;
@@ -76,6 +107,13 @@ const ImageContainer = ({ images }) => {
   return (
     <div className={image_container}>
       <ChangeLayout />
+      {openImageViewer && (
+        <ImageViewer
+          images={images}
+          id={selectedID}
+          handleCloseImageViewer={handleCloseImageViewer}
+        />
+      )}
     </div>
   );
 };

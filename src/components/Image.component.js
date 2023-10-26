@@ -12,18 +12,33 @@ import {
   image_link,
 } from "../styles/image.module.css";
 
-import useWindowWith from "../hooks/useWindowWith";
+import useWindowWidth from "../hooks/useWindowWidth";
 
-const Image = ({ picture }) => {
+const Image = ({ picture, handleImageClick }) => {
   const img = getImage(picture);
   const src = picture.childImageSharp.gatsbyImageData.images.fallback.src;
 
   const facebookShareUrl = `https://www.facebook.com/sharer.php?u=https://klaudiusz.netlify.app${src}`;
 
-  const width = useWindowWith();
+  const width = useWindowWidth();
+
+  const handleOnClick = (e) => {
+    const tagname = e.target.tagName;
+    if (width > 768) {
+      if (tagname !== "A" && tagname !== "path" && tagname !== "svg") {
+        handleImageClick(picture.id);
+      }
+    }
+  };
 
   return (
-    <div className={image}>
+    <div
+      className={image}
+      onClick={handleOnClick}
+      onKeyDown={handleOnClick}
+      role="button"
+      tabIndex={0}
+    >
       <GatsbyImage
         image={img}
         src={src}
