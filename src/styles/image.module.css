@@ -70,9 +70,9 @@
   }
 
   .image_share_bar > a:hover {
-    background: var(--primary-color);
+    background: var(--black-color);
     color: var(--white-color);
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--black-color);
   }
 
   .image:hover .image_share_bar {

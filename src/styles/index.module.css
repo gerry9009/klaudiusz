@@ -66,10 +66,13 @@
   background: var(--white-color);
   color: var(--primary-color);
 }
+.index_headline a:active {
+  transform: scale(0.9);
+}
 
 @media (min-width: 768px) {
   .index {
-    margin-top: -6.25rem;
+    margin-top: -5.75rem;
   }
 
   .index_headline div {

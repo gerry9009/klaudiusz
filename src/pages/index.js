@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { graphql } from "gatsby";
 import { Link } from "gatsby-link";
 import CardList from "../components/CardList.component";
@@ -15,10 +15,35 @@ import {
 import pages from "../data/pages";
 import Subtitle from "../components/Subtitle.component";
 import Contact from "../components/contact.component";
+import Section from "../components/Section.component";
+
+import sectionContent from "../data/sections";
 
 export default function Home({ location, data }) {
   const edges = data.allFile.edges;
   // GET IMAGE FROM FOLDERS TO EACH CATEGORY
+
+  //TODO: create content mesh with md file instead of this solution
+
+  const aboutImage = edges.filter((edge) => {
+    return (
+      edge.node.relativeDirectory === "section" &&
+      edge.node.base === "about.jpeg"
+    );
+  })[0].node;
+
+  const aboutContent = sectionContent.about;
+
+  const toolsImage = edges.filter((edge) => {
+    return (
+      edge.node.relativeDirectory === "section" &&
+      edge.node.base === "tools.jpeg"
+    );
+  })[0].node;
+
+  const toolsContent = sectionContent.tools;
+
+  //TODO: this part is ---------------------------------------------
 
   const extendPages = pages.dropdown.map((page) => {
     // page.eng === edges.node.relativeDirectory
@@ -45,16 +70,23 @@ export default function Home({ location, data }) {
               <Link to="/#refrencia">Referencia</Link>
             </div>
           </div>
+
           <Subtitle title="Bútorasztalos munkák" />
-          <div>Rólam</div>
+
+          <Section
+            content={aboutContent}
+            image={aboutImage}
+            isReverse={false}
+          />
+
           <div className={index_content} id="refrencia">
             <Subtitle title="Referenciák" />
             <CardList pages={extendPages} />
-
-            <div id="contact">
-              <Subtitle title="Kapcsolat" />
-              <Contact />
-            </div>
+          </div>
+          <Section content={toolsContent} image={toolsImage} isReverse={true} />
+          <div id="contact">
+            <Subtitle title="Kapcsolat" />
+            <Contact />
           </div>
         </div>
       </Layout>

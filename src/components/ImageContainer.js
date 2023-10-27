@@ -26,7 +26,6 @@ const ImageContainer = ({ images }) => {
   useScrollDisable(openImageViewer);
 
   const handleImageClick = (id) => {
-    console.log(id);
     setOpenImageViewer(true);
     setSelectedID(id);
   };
